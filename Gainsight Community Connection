@@ -1,0 +1,167 @@
+{
+      "ProviderConfiguration": {
+      "BaseUrl": "https://api2-us-west-2.insided.com",
+         "AuthenticationToken": {
+            "AuthenticationType": "OAuth2",
+            "TokenType": "Header",
+            "TokenName": "Bearer",
+            "HeaderName": "Authorization",
+            "OAuth2": {
+               "Mode": "TwoLegged",
+               "Url": "https://api2-us-west-2.insided.com/oauth2/token",
+               "ClientId": "f6341028-bb11-4fa4-8bf7-3507b74f47ca",
+               "ClientSecret": "49d65c509e6fecddfb8fa23743b79ecc680b7df806d45be0790462a6be3b11a9",
+               "GrantType": "client_credentials"
+            }
+         },
+      "ErrorHandling" : {
+        "ObjectNotFoundErrors" : [ "Done" ]
+    }
+   },
+   "Metadata": {
+      "Procedures": [
+         {
+            "Name": "AddRoleToUser",
+            "Url": "user/<userid>/role",
+            "Method": "POST",
+            "BodyType": "Json",
+            "Parameters": [
+               {
+                  "Name": "userid",
+                  "APIPath": "userid",
+                  "DbType": "String",
+                  "ParameterType": "UrlPath"
+               },
+               {
+                  "Name": "user_role",
+                  "APIPath": "data.user_role",
+                  "DbType": "JsonArray",
+                  "ParameterType": "BodyParameter"
+               }
+            ],
+            "ResultPath": ""
+         },
+         {
+            "Name": "UpdateUserField",
+            "Url": "/user/<userid>/<field>/<value>",
+            "Method": "PUT",
+            "BodyType": "Json",
+            "Parameters": [
+               {
+                  "Name": "userid",
+                  "APIPath": "userid",
+                  "DbType": "Int32",
+                  "ParameterType": "UrlPath"
+               },
+               {
+                  "Name": "field",
+                  "APIPath": "field",
+                  "DbType": "String",
+                  "ParameterType": "UrlPath"
+               },
+               {
+                  "Name": "value",
+                  "APIPath": "value",
+                  "DbType": "String",
+                  "ParameterType": "UrlPath"
+               }
+            ],
+            "ResultPath": "result",
+            "Results": [
+               {
+                  "Name": "userid",
+                  "APIPath": "userid",
+                  "DbType": "Int32"
+               },
+               {
+                  "Name": "email",
+                  "APIPath": "email",
+                  "DbType": "String"
+               },
+               {
+                  "Name": "username",
+                  "APIPath": "username",
+                  "DbType": "String"
+               },
+               {
+                  "Name": "rank",
+                  "APIPath": "rank",
+                  "DbType": "String"
+               },
+               {
+                  "Name": "joindate",
+                  "APIPath": "joindate",
+                  "DbType": "String"
+               },
+               {
+                  "Name": "profileFields",
+                  "APIPath": "profileFields",
+                  "DbType": "JsonObject"
+               },
+               {
+                  "Name": "roles",
+                  "APIPath": "roles",
+                  "DbType": "JsonArray"
+               },
+               {
+                  "Name": "user_statistics",
+                  "APIPath": "user_statistics",
+                  "DbType": "JsonObject"
+               },
+               {
+                  "Name": "sso",
+                  "APIPath": "sso",
+                  "DbType": "JsonObject"
+               }
+            ]
+         }
+      ],
+      "Objects": [
+         {
+            "Name": "User",
+            "Url": "/user",
+            "ResultPath": "*",
+            "Columns": [
+               {
+                  "Name": "userid",
+                  "APIPath": "userid",
+                  "DbType": "Int32",
+                  "Primary": true,
+                  "Createable": false,
+                  "Updateable": false
+               },
+               {
+                  "Name": "username",
+                  "APIPath": "username",
+                  "DbType": "String",
+                  "Createable": false,
+                  "Updateable": false
+               },
+               {
+                  "Name": "email",
+                  "APIPath": "email",
+                  "DbType": "String",
+                  "Required": true
+               },
+               {
+                  "Name": "roleName",
+                  "APIPath": "roleName",
+                  "DbType": "String",
+                  "Required": true
+               }
+            ],
+            "RetrieveSingleOperation": {
+               "Url": "/user/email/<email>",
+               "ResultPath": "",
+               "Arguments": [
+                  {
+                     "ColumnName": "email",
+                     "ParameterName": "email",
+                     "ParameterType": "UrlPath"
+                  }
+               ]
+            }
+         }
+      ]
+   }
+}

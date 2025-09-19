@@ -22,7 +22,7 @@
       "Procedures": [
          {
             "Name": "AddRoleToUser",
-            "Url": "user/<userid>/role",
+            "Url": "/user/<userid>/role",
             "Method": "POST",
             "BodyType": "Json",
             "Parameters": [
